@@ -439,19 +439,7 @@ function Header({
         </nav>
 
         <div className="flex items-center gap-2">
-          <button
-            className="hidden rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-700 dark:text-emerald-300 sm:block"
-            onClick={() => onNavigate("admin")}
-          >
-            System online
-          </button>
-          <button
-            className="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-[#5468ff]/40 hover:text-[#5468ff] dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-200"
-            onClick={onThemeChange}
-          >
-            {theme === "dark" ? "Light" : "Dark"}
-          </button>
-        </div>
+          </div>
       </div>
 
       <nav className="mt-3 grid grid-cols-5 gap-1 md:hidden">
@@ -462,14 +450,7 @@ function Header({
           ["Отзывы", "reviews"],
           ["Admin", "admin"],
         ].map(([label, value]) => (
-          <button
-            key={value}
-            className="rounded-full bg-white/70 px-2 py-2 text-[11px] font-medium text-slate-600 dark:bg-white/[0.05] dark:text-slate-300"
-            onClick={() => onNavigate(value as Screen)}
-          >
-            {label}
-          </button>
-        ))}
+          ))}
       </nav>
     </header>
   );
@@ -477,13 +458,7 @@ function Header({
 
 function NavButton({ label, onClick }: { label: string; onClick: () => void }) {
   return (
-    <button
-      className="rounded-full px-4 py-2 text-slate-600 transition hover:bg-[#5468ff] hover:text-white dark:text-slate-300"
-      onClick={onClick}
-    >
-      {label}
-    </button>
-  );
+    );
 }
 
 function Overview({
@@ -518,19 +493,7 @@ function Overview({
             Мини-приложение для ручного escrow-процесса: без автопроверок блокчейна, без скрытых подтверждений, только статусы администратора.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <button
-              className="rounded-full bg-[#5468ff] px-6 py-4 text-sm font-semibold text-white shadow-[0_24px_70px_rgba(84,104,255,0.35)] transition hover:-translate-y-0.5 hover:bg-[#4354db]"
-              onClick={onCreate}
-            >
-              Создать сделку
-            </button>
-            <button
-              className="rounded-full border border-slate-300 bg-white/70 px-6 py-4 text-sm font-semibold text-slate-800 transition hover:border-[#5468ff]/50 dark:border-white/15 dark:bg-white/[0.05] dark:text-white"
-              onClick={() => onSelectDeal(activeDeals[0]?.id ?? deals[0].id)}
-            >
-              Открыть активную сделку
-            </button>
-          </div>
+            </div>
         </motion.div>
 
         <div className="grid max-w-2xl grid-cols-3 gap-3">
@@ -650,10 +613,7 @@ function CreateDeal({
         </label>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-slate-500 dark:text-slate-400">JWT, CSRF и Telegram Init Data проверяются на API-слое.</p>
-          <button className="rounded-full bg-[#5468ff] px-6 py-4 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(84,104,255,0.30)] transition hover:-translate-y-0.5 hover:bg-[#4354db]">
-            Сгенерировать Deal ID
-          </button>
-        </div>
+          </div>
       </form>
     </section>
   );
@@ -709,13 +669,7 @@ function DealWorkspace({
         </div>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <button className="rounded-full bg-[#5468ff] px-5 py-3 text-sm font-semibold text-white" onClick={onCopy}>
-            Скопировать ссылку
-          </button>
-          <button className="rounded-full border border-red-500/25 px-5 py-3 text-sm font-semibold text-red-600 dark:text-red-300" onClick={onDispute}>
-            Открыть спор
-          </button>
-        </div>
+          </div>
       </div>
 
       <div className="space-y-6">
@@ -750,10 +704,7 @@ function DealWorkspace({
               onChange={(event) => setReviewForm({ ...reviewForm, text: event.target.value })}
             />
           </div>
-          <button className="mt-4 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white dark:bg-white dark:text-slate-950">
-            Оставить отзыв
-          </button>
-        </form>
+          </form>
       </div>
     </section>
   );
@@ -862,10 +813,7 @@ function AdminPanel({
               <Input label="Deal ID" value={forceClose.dealId} onChange={(dealId) => setForceClose({ ...forceClose, dealId })} />
               <Input label="STATUS" value={forceClose.status} onChange={(status) => setForceClose({ ...forceClose, status })} />
             </div>
-            <button className="mt-4 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white dark:bg-white dark:text-slate-950" onClick={onRunForceClose}>
-              Выполнить команду
-            </button>
-          </div>
+            </div>
 
           <div className="rounded-[2rem] border border-slate-200 bg-white/82 p-5 dark:border-white/10 dark:bg-white/[0.05] sm:p-6">
             <h2 className="text-xl font-semibold tracking-tight">Баны и нарушения</h2>
@@ -960,18 +908,7 @@ function StatusBadge({ status }: { status: DealStatus }) {
 
 function AdminAction({ label, tone = "primary", onClick }: { label: string; tone?: "primary" | "danger" | "neutral"; onClick: () => void }) {
   return (
-    <button
-      className={cn(
-        "rounded-2xl px-4 py-4 text-left text-sm font-semibold transition hover:-translate-y-0.5",
-        tone === "primary" && "bg-[#5468ff] text-white shadow-[0_18px_44px_rgba(84,104,255,0.24)]",
-        tone === "danger" && "bg-red-500/10 text-red-700 dark:text-red-300",
-        tone === "neutral" && "bg-slate-100 text-slate-800 dark:bg-white/[0.08] dark:text-white",
-      )}
-      onClick={onClick}
-    >
-      {label}
-    </button>
-  );
+    );
 }
 
 function SkeletonBlock({ className }: { className?: string }) {
