@@ -5,7 +5,6 @@ import { cn } from "./utils/cn";
 type DealStatus = "active" | "completed" | "cancelled" | "dispute";
 type NftStatus = "waiting" | "received" | "not_received";
 type PaymentStatus = "waiting" | "paid" | "not_paid";
-type Screen = "overview" | "create" | "deal" | "reviews" | "admin";
 type ThemeMode = "light" | "dark";
 
 type Deal = {
@@ -384,8 +383,6 @@ function App() {
 
                 {screen === "reviews" && <Reviews reviews={reviews} completedDeals={completedDeals.length} />}
 
-                {screen === "admin" && (
-                  <AdminPanel
                     deals={deals}
                     selectedDeal={selectedDeal}
                     forceClose={forceClose}
@@ -740,7 +737,6 @@ function Reviews({ reviews, completedDeals }: { reviews: Review[]; completedDeal
   );
 }
 
-function AdminPanel({
   deals,
   selectedDeal,
   forceClose,
@@ -765,7 +761,6 @@ function AdminPanel({
     <section className="grid gap-6 py-8 lg:grid-cols-[0.74fr_1.26fr] lg:py-12">
       <aside className="rounded-[2rem] border border-slate-200 bg-white/82 p-4 dark:border-white/10 dark:bg-white/[0.05]">
         <div className="px-2 py-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#5468ff]">Admin only</p>
           <h1 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Панель управления</h1>
         </div>
         <div className="mt-2 space-y-2">
@@ -796,12 +791,6 @@ function AdminPanel({
           </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <AdminAction label="Подтвердить получение NFT" onClick={() => onUpdateDeal(selectedDeal.id, { nftStatus: "received" }, "Администратор подтвердил получение NFT")} />
-            <AdminAction label="Подтвердить оплату" onClick={() => onUpdateDeal(selectedDeal.id, { paymentStatus: "paid" }, "Администратор подтвердил оплату")} />
-            <AdminAction label="Открыть спор" tone="danger" onClick={() => onUpdateDeal(selectedDeal.id, { dealStatus: "dispute" }, "Администратор открыл спор")} />
-            <AdminAction label="Завершить сделку" onClick={() => onUpdateDeal(selectedDeal.id, { dealStatus: "completed" }, "Администратор завершил сделку")} />
-            <AdminAction label="Отменить сделку" tone="danger" onClick={() => onUpdateDeal(selectedDeal.id, { dealStatus: "cancelled" }, "Администратор отменил сделку")} />
-            <AdminAction label="Блок / Разблок" tone="neutral" onClick={() => onToggleBan(selectedDeal.seller)} />
           </div>
         </div>
 
@@ -906,7 +895,6 @@ function StatusBadge({ status }: { status: DealStatus }) {
   );
 }
 
-function AdminAction({ label, tone = "primary", onClick }: { label: string; tone?: "primary" | "danger" | "neutral"; onClick: () => void }) {
   return (
     );
 }
