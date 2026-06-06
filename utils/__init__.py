@@ -1,0 +1,1 @@
+"""Shared utilities for Secure Assets Bridge Node."""
