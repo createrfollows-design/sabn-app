@@ -448,7 +448,7 @@ function Header({
           ["Создать", "create"],
           ["Сделка", "deal"],
           ["Отзывы", "reviews"],
-          ["Admin", "admin"],
+          []
         ].map(([label, value]) => (
           ))}
       </nav>
