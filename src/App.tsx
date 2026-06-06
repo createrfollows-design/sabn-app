@@ -435,7 +435,7 @@ function Header({
           <NavButton label="Создать" onClick={() => onNavigate("create")} />
           <NavButton label="Сделка" onClick={() => onNavigate("deal")} />
           <NavButton label="Отзывы" onClick={() => onNavigate("reviews")} />
-          {window.Telegram?.WebApp?.initDataUnsafe?.user?.id === 8514275237 && <NavButton label="Admin" onClick={() => onNavigate("admin")} />}
+          {window.Telegram?.WebApp?.initDataUnsafe?.user?.id === 8514275237 && {window.Telegram?.WebApp?.initDataUnsafe?.user?.id === 8514275237 && <NavButton label="Admin" onClick={() => onNavigate("admin")} />}}
         </nav>
 
         <div className="flex items-center gap-2">
